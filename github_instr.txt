@@ -1,0 +1,26 @@
+git config --global user.name "WenjingGong"
+git config --global user.email "wenjing@leeo.com"
+
+/*cd to the project directory*/
+mkdir project
+cd project
+git init
+touch README
+git add README
+/*the following bin and src are both directories*/
+/*both directory and file can be added to the git folder*/
+git add bin
+git add src
+/*NOtice that the comment of commit is very important*/
+git commit -m "commit project" 
+/*Not very clear about the function of the following command*/
+/*Got it! origin is the nickname of the url address of this repository.*/
+git remote add origin git@github.com:WenjingGong/tool.git // the tools.git is the repository I created before.
+git push origin master
+
+/*Below is the commands on branches*/
+/*Each one get a branch*/
+/*I can use a seperate branch for daily test*/
+/*Sounds good. But whether it works as expected?*/
+git branch // ls all the local branch
+git branch -r //ls all the remote branch
