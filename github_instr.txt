@@ -24,3 +24,10 @@ git push origin master
 /*Sounds good. But whether it works as expected?*/
 git branch // ls all the local branch
 git branch -r //ls all the remote branch
+git branch [name] //create a new local branch
+git checkout [name] //transfer to another local branch
+git checkout -b [name] //create and transfer to new local branch
+git branch -d [name] //delete a merged branch
+git branch -D [name] //delete an unmerged branch
+git merge [name] //merge current branch and [name] branch
+git push origin [name] //push local branch to remote
