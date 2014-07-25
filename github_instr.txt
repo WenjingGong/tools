@@ -31,3 +31,4 @@ git branch -d [name] //delete a merged branch
 git branch -D [name] //delete an unmerged branch
 git merge [name] //merge current branch and [name] branch
 git push origin [name] //push local branch to remote
+git push origin [local branch name]:[remote branch name] //create(if needed) and push local branch to remote branch
