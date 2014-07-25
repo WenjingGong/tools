@@ -1,3 +1,5 @@
+/*blog.csdn.net/ithomer/article/details/7529022*/
+
 git config --global user.name "WenjingGong"
 git config --global user.email "wenjing@leeo.com"
 
@@ -32,3 +34,4 @@ git branch -D [name] //delete an unmerged branch
 git merge [name] //merge current branch and [name] branch
 git push origin [name] //push local branch to remote
 git push origin [local branch name]:[remote branch name] //create(if needed) and push local branch to remote branch
+git push origin:[remote branch name]  // delete a remote branch (so tricky!)
