@@ -1,0 +1,1 @@
+/usr/local/bin/bsl_update.bin

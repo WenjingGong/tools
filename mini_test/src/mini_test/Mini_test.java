@@ -40,6 +40,7 @@ public class Mini_test {
 		System.out.println("4:ALS_test");
 		System.out.println("5:MIC_test");
 		System.out.println("6:Reset_Detection_test");
+		System.out.println("9:Wifi Check");
 		Scanner scanner = new Scanner(System.in);
 		String line = scanner.nextLine();
 		
@@ -139,7 +140,7 @@ public class Mini_test {
 				case 5:
 					//mic test
 					paras = content.get(13).split(" ");
-					MIC_test.process(num, outputfile.getAbsolutePath(), paras, sn);
+					MIC_test.process(num, downloadpath, outputfile.getAbsolutePath(), paras, sn);
 					break;
 				case 6:
 					//reset key detection
@@ -147,6 +148,9 @@ public class Mini_test {
 					Reset_key.serialcomm(num, Long.parseLong(paras[0]), downloadpath);
 					Reset_key.fileprocess(downloadpath, outputfile.getAbsolutePath(), paras, sn);
 					break;
+				case 9:
+					//bsl update and wifi check(update via wifi)
+					SSH_update.checkupdate(num, downloadpath, outputfile.getAbsolutePath());
 				}				
 			}
 			System.out.println("Please enter the test item ID, in the specific order:(1-8),0 is quit");	
@@ -209,7 +213,7 @@ public class Mini_test {
 		}
 		
 		String []vars=new String[2];
-		String []results=new String[26];
+		String []results=new String[27];
 		ArrayList<String> errors = new ArrayList<String>();
 		
 		int index=0;

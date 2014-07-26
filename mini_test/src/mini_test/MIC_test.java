@@ -18,13 +18,13 @@ import features.FeatureIm;
 public class MIC_test extends FeatureIm{
 	final static int CHUNK_SIZE = 65536;
 	
-	public static void process(String num, String filepath, String []paras, String sn){
+	public static void process(String num, String downloadpath, String filepath, String []paras, String sn){
 			
 		String result="";
 		int errornum=3;
 		int errorcode=0;
 		
-		File sourcefile = new File(filepath);
+		File sourcefile = new File(downloadpath+"\\alarm.wav");
 		if (sourcefile.exists()){
 			sourcefile.delete();
 		}
@@ -127,13 +127,13 @@ public class MIC_test extends FeatureIm{
 			
 			
 			
-		File finalresult = new File(filepath+"\\original output\\"+sn+".txt");	
+		File finalresult = new File(filepath);	
 			
 			try{
 			    //need to integrate now?
-			    BufferedWriter bw = new BufferedWriter(new FileWriter(finalresult));
+			    BufferedWriter bw = new BufferedWriter(new FileWriter(finalresult,true));
 			    bw.write("MIC_Result="+result+"\r\n");
-			    System.out.println("MIC_Result="+result+"\r\n");
+			    System.out.println("MIC_Result="+result);
 			    if (result.equals("FAILED")){
 					NumberFormat nf = NumberFormat.getIntegerInstance();
 					nf.setMinimumIntegerDigits(2);
