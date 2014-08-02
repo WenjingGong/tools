@@ -31,7 +31,7 @@ public class LaunchZoc {
 	}
 	
 	
-	public static void runhelper(String num, String path){
+	public static void runhelper(String num, String path, String mode){
 		try{
 			File filepath=new File(path);//where the required file locates.
 			if (!filepath.exists()){
@@ -60,10 +60,14 @@ public class LaunchZoc {
 				summarypath.mkdirs();
 			}
 			BufferedWriter bw=new BufferedWriter(new FileWriter(script));//write the script file
-			//The next line is to launch ZOC with a valid license and define the window's name
-			bw.write("CALL ZocSetProgramOption \'WindowTitle=\""+"COM"+num+" [evaluation mode]\"\'\r\n");	
-			//The next line is to launch ZOC without license(evaluation mode) and define the window's name
-			bw.write("CALL ZocSetProgramOption \'WindowTitle=\""+"COM"+num+"\"\'\r\n");	// define the ZOC window title with port number			
+			if (mode.startsWith("e")){
+				//The next line is to launch ZOC without license(evaluation mode) and define the window's name
+				bw.write("CALL ZocSetProgramOption \'WindowTitle=\""+"COM"+num+"\"\'\r\n");	// define the ZOC window title with port number
+			}
+			else {
+				//The next line is to launch ZOC with a valid license and define the window's name
+				bw.write("CALL ZocSetProgramOption \'WindowTitle=\""+"COM"+num+" [evaluation mode]\"\'\r\n");
+			}	
 			bw.write("CALL ZocSetProgramOption \'DownloadPath=\""+downloadpath.getAbsolutePath()+"\\\"\'\r\n");// define the ZOC download path
 			//bw.write("CALL ZocSetProgramOption \"SafWarnRTS=no\"");
 			bw.write("CALL ZocSetSessionOption \"ExistActionOldDate=4\"\r\n");

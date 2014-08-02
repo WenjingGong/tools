@@ -24,7 +24,7 @@ public class Mini_test {
 		try {
 			LaunchZoc.onewindow(num);
 			Thread.sleep(1000);
-			LaunchZoc.runhelper(num, filepath);
+			LaunchZoc.runhelper(num, filepath, content.get(content.size()-1));
 			Thread.sleep(1000);
 			Login.serialcomm(num);
 			Login.checkloginstatus(num, downloadpath);
