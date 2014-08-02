@@ -25,9 +25,10 @@ public class Mini_test {
 			LaunchZoc.onewindow(num);
 			Thread.sleep(1000);
 			LaunchZoc.runhelper(num, filepath, content.get(content.size()-1));
-			Thread.sleep(1000);
+			Thread.sleep(3000);
 			Login.serialcomm(num);
 			Login.checkloginstatus(num, downloadpath);
+			Thread.sleep(2000);
 			
 		}catch (Exception ex){
 			ex.printStackTrace();
@@ -87,18 +88,38 @@ public class Mini_test {
 					paras = content.get(0).split(" ");
 					SW_version.serialcomm(num, downloadpath);
 					SW_version.fileprocess(downloadpath, outputfile.getAbsolutePath(), sn);
+					try {
+						Thread.sleep(2000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
 					//fw version check 
 					paras = content.get(1).split(" ");
 					FW_version.serialcomm(num);
 					FW_version.fileprocess(downloadpath, outputfile.getAbsolutePath(), paras, sn);
+					try {
+						Thread.sleep(2000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
 					//mac address check
 					paras = content.get(2).split(" ");
 					Mac_Read.serialcomm(num, downloadpath);
-					Mac_Read.fileprocess(downloadpath, outputfile.getAbsolutePath(), sn);					
+					Mac_Read.fileprocess(downloadpath, outputfile.getAbsolutePath(), sn);
+					try {
+						Thread.sleep(2000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
 					//ddr size check
 					paras = content.get(3).split(" ");
 					DDR_test.serialcomm(num, downloadpath);
 					DDR_test.fileprocess(downloadpath,outputfile.getAbsolutePath(),paras,sn);
+					try {
+						Thread.sleep(2000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
 					//emmc size check
 					paras = content.get(4).split(" ");
 					EMMC_test.serialcomm(num, downloadpath);
