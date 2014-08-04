@@ -1,0 +1,20 @@
+This is an instruction of the parameters.txt
+At each line, the parameter's explanation is listed.
+It is ordered by that of parameters.txt
+If the parameter is 0, the test of this line needs no parameters.
+
+SW_version
+FW_version (if 0, no comparation is needed; otherwise, the current version number need to be compared withi this value.)
+MAC_address
+DDR_lower bound(MB), DDR_upper bound(MB)
+EMMC size lowerbound(GB), EMMC size upperbound(GB)
+EMMC read&write string(random)
+temperature lowerbound, temperature upperbound
+humidity lowerbound, humidity upperbound
+LED test
+OFN test lasting time(the rotating action needs to be done with the time, described in ms)
+ALS test dark parameters
+MIC parameters
+reset_key detection
+new firmeware's name
+if an evaluation mode, this line should be 'e' or 'evaluation' or any other string which starts with an 'e'.
