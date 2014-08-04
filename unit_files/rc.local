@@ -1,4 +1,4 @@
-#/bin/sh 
+#!/bin/sh 
 #
 # rc.local
 #
@@ -9,8 +9,6 @@
 # In order to enable or disable this script just change the execution
 # bits.
 #
-
-#hciattach /dev/ttyO1 texas
 
 # File which indicates if this is the first boot
 FTS_FILE='/etc/first_time_setup.txt'
@@ -71,41 +69,48 @@ fi
 echo '1-004c' > /sys/bus/i2c/devices/1-004c/driver/unbind
 echo '1-0050' > /sys/bus/i2c/devices/1-0050/driver/unbind
 
-/usr/lib/leeoalpha/sw-update/image-update-factory.sh
 
 
 export PATH=$PATH:/usr/local/sbin
 
-rm /usr/lib/leeoalpha/aging/aging_log.txt 
-rm /usr/lib/leeoalpha/aging/als.txt 
-rm /usr/lib/leeoalpha/aging/emmc_test.txt 
-rm /usr/lib/leeoalpha/aging/eeprom_test.txt 
-rm /usr/lib/leeoalpha/aging/temp.txt 
-rm /usr/lib/leeoalpha/aging/time.txt 
-rm /usr/lib/leeoalpha/aging/result.txt 
-rm /usr/lib/leeoalpha/aging/led.txt
-rm /usr/lib/leeoalpha/aging/humid.txt
+# Calibrate wifi if it hasn't been calibrated already and
+# if mac.txt is present in /mnt/data
+if [ ! -f /lib/firmware/ti-connectivity/wl1271-nvs.bin ] && [ -f /mnt/data/mac.txt ]; then
+  /root/easy_wifi_calibrate/easy_wifi_calibrate.sh
+fi
 
-if [ -f /usr/lib/leeoalpha/aging/non-aging.txt ]; then
+rm /usr/lib/leeonl/aging/aging_log.txt 
+rm /usr/lib/leeonl/aging/als.txt 
+rm /usr/lib/leeonl/aging/emmc_test.txt 
+rm /usr/lib/leeonl/aging/eeprom_test.txt 
+rm /usr/lib/leeonl/aging/temp.txt 
+rm /usr/lib/leeonl/aging/time.txt 
+rm /usr/lib/leeonl/aging/result.txt 
+rm /usr/lib/leeonl/aging/led.txt
+rm /usr/lib/leeonl/aging/humid.txt
+rm /usr/lib/leeonl/aging/ofn.txt
+/usr/lib/leeonl/sensors/set_pir.sh
 
-    read last_time < /usr/lib/leeoalpha/aging/non-aging.txt
+if [ -f /usr/lib/leeonl/aging/non-aging.txt ]; then
 
-    /usr/lib/leeoalpha/aging/aging_led.sh &
+    read last_time < /usr/lib/leeonl/aging/non-aging.txt
+
+    /usr/lib/leeonl/aging/aging_led.sh &
     pid1=$!
 
     if [ "$last_time" -eq 0 ]; then
 	
-    	/usr/lib/leeoalpha/aging/aging_test.sh 200 $pid1 &
+    	/usr/lib/leeonl/aging/aging_test.sh 200 $pid1 &
 	pid2=$!
     else
 	
-	usr/lib/leeoalpha/aging/aging_test.sh 20 $pid1 &
+	usr/lib/leeonl/aging/aging_test.sh 20 $pid1 &
 	pid2=$!
     fi
 
 else
-    /usr/lib/leeoalpha/sensors/led_off.sh
-    /usr/lib/leeoalpha/sensors/led_blue.sh
+    /usr/lib/leeonl/sensors/led_off.sh
+    /usr/lib/leeonl/sensors/led_blue.sh
 fi
 
 exit 0
